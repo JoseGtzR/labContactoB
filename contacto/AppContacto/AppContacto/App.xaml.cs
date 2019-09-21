@@ -11,7 +11,7 @@ namespace AppContacto
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ListViewContact();
         }
 
         protected override void OnStart()
