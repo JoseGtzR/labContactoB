@@ -8,6 +8,7 @@ namespace AppContacto.ViewModels
     using System;
     using Xamarin.Forms;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ContactViewModel:BaseViewModel
     {
@@ -59,7 +60,24 @@ namespace AppContacto.ViewModels
             }
             MainViewModel mainViewModel = MainViewModel.GetInstance();
             mainViewModel.ContactList = (List<Contact>)response.Result;
-            //this.Contacts = new ObservableCollection<Contact>();
+            this.Contacts = new ObservableCollection<Contact>(this.ToContactView());
+        }
+
+        private IEnumerable<Contact> ToContactView()
+        {
+            ObservableCollection<Contact> collection = new ObservableCollection<Contact>();
+            MainViewModel main = MainViewModel.GetInstance();
+            foreach (var lista in main.ContactList)
+            {
+                Contact contacto = new Contact();
+                contacto.ContactID = lista.ContactID;
+                contacto.Name = lista.Name;
+                contacto.Type = lista.Type;
+                contacto.ContactValue = lista.ContactValue;
+                collection.Add(contacto);
+
+            }
+            return collection;
         }
         #endregion
     }
