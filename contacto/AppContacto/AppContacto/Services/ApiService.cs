@@ -30,7 +30,7 @@ namespace AppContacto.Services
                 }
 
 
-                bool isReachable = VerifyConnectionURL("http://localhost:50048/");
+                bool isReachable = VerifyConnectionURL("https://apicontactsi220.azurewebsites.net/");
                 if (!isReachable)
                 {
                     return new Response
